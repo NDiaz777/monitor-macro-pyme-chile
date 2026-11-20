@@ -1,0 +1,33 @@
+name: Eval de la IA (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      repeticiones:
+        description: "Corridas por perfil"
+        default: "2"
+
+permissions:
+  contents: write
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scripts/evaluar_ia.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          REPETICIONES: ${{ inputs.repeticiones }}
+      - name: Guardar resultados
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add docs/eval_resultados.csv
+          git diff --cached --quiet || git commit -m "docs: resultados del eval de IA"
+          git push

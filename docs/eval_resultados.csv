@@ -1,0 +1,9 @@
+perfil,rep,modelo,latencia_s,tokens_in,tokens_out,palabras,secciones_ok,pct_cifras_verificadas,no_verificadas
+Importador,1,gemini-3.5-flash,15.53,1677,397,232,4/4,100.0,
+Importador,2,gemini-3.5-flash,9.68,1677,385,223,4/4,100.0,
+Exportador,1,gemini-3.5-flash-lite,2.32,1673,334,212,4/4,100.0,
+Exportador,2,gemini-3.5-flash,10.34,1673,334,189,4/4,92.3,41
+Comercio con arriendo en UF,1,gemini-3.5-flash,17.0,1675,81,47,2/4,100.0,
+Comercio con arriendo en UF,2,gemini-3.5-flash,33.36,1675,79,44,2/4,100.0,
+Con crédito bancario,1,gemini-3.5-flash,39.24,1672,81,42,0/4,100.0,
+Con crédito bancario,2,gemini-3.5-flash,33.84,1672,273,157,3/4,100.0,

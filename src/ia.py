@@ -69,7 +69,7 @@ def generar_insight(prompt: str, api_key: str, modelo: str | None = None) -> dic
                 model=m,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    system_instruction=SISTEMA, temperature=0.3, max_output_tokens=2048),
+                    system_instruction=SISTEMA, temperature=0.3, max_output_tokens=8192),
             )
             latencia = time.perf_counter() - t0
             uso = resp.usage_metadata

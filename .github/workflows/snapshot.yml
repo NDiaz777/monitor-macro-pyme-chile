@@ -1,0 +1,29 @@
+name: Actualizar snapshot diario
+
+on:
+  schedule:
+    - cron: "17 11 * * *"   # todos los días ~08:17 Chile (11:17 UTC)
+  workflow_dispatch:         # botón para correrlo a mano
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scripts/actualizar_snapshot.py
+        env:
+          BCCH_TOKEN: ${{ secrets.BCCH_TOKEN }}
+      - name: Commit si hay cambios
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add data/snapshot.csv
+          git diff --cached --quiet || git commit -m "chore: snapshot diario de indicadores"
+          git push

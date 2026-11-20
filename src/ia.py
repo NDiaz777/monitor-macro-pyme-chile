@@ -37,7 +37,7 @@ FORMATO = """Responde en Markdown con exactamente estas secciones:
 (2 bullets)
 Máximo 220 palabras en total."""
 
-MODELOS_RESPALDO = ["gemini-flash-latest", "gemini-flash-lite-latest"]
+MODELOS_RESPALDO = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-3.5-flash-lite"]
 
 
 def construir_prompt(kpis: dict, senales: list[dict], meta: dict, perfil: str) -> str:

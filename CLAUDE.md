@@ -17,13 +17,10 @@ Dashboard Streamlit con 8 indicadores macro de Chile (dólar, euro, UF, TPM, IPC
 - `docs/GUIA_NICO.md`: guía de publicación, conceptos y preguntas de entrevista.
 
 ## Estado (19-nov-2026)
-- Código completo; `pytest -q` → 8/8 pasan. Probado solo con datos y una IA simulados, porque el entorno donde se escribió no llegaba a las APIs.
+- Código completo; `pytest -q` → 9/9 pasan. APIs reales probadas vía GitHub Actions (19-nov): 7/8 indicadores al día, IPC VIEJO.
 - Hallazgo: en mindicador.cl el IPC está congelado en dic-2025. La app lo marca como desactualizado.
 - **Pendiente:**
-  1. Probar contra las APIs reales.
-  2. Crear el repo público en GitHub y subirlo.
   3. Deploy en Streamlit Cloud con secrets.
-  4. Correr el workflow de snapshot.
   5. Correr `scripts/evaluar_ia.py` y llenar la tabla de métricas del README con cifras reales (nunca inventadas).
   6. Reemplazar `<tu-app>` en el README con la URL real de Streamlit.
 

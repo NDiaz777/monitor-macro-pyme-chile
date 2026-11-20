@@ -43,7 +43,7 @@ flowchart LR
 | Latencia de la IA (con caché) | _pendiente_ | se muestra en la app, origen "Caché" |
 | Tokens por análisis (entrada/salida) | _pendiente_ | `usage_metadata` de Gemini |
 | Formato correcto (4/4 secciones) | _pendiente_ | mismo script |
-| Tests automáticos | 8/8 pasan | `pytest` |
+| Tests automáticos | 9/9 pasan | `pytest` |
 
 ## Decisiones y trade-offs
 | Decisión | Alternativa descartada | Por qué |

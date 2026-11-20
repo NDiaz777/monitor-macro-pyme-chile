@@ -109,6 +109,9 @@ def cargar_indicadores(anios_atras: int = 3, bcch_token: str | None = None,
         if s.empty and codigo in snapshot:
             s, fuente = snapshot[codigo], "snapshot guardado (APIs no disponibles)"
 
+        # La UF se publica por adelantado (hasta el día 9 del mes siguiente):
+        # cortamos en "hoy" para mostrar el valor vigente y no uno futuro.
+        s = s[s.index <= pd.Timestamp(hoy)]
         s.name = codigo
         series[codigo] = s
         meta[codigo] = {"fuente": fuente or "sin datos", **estado_frescura(s, cfg["frecuencia"], hoy)}

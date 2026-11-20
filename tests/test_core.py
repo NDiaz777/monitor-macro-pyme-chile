@@ -74,3 +74,11 @@ def test_prompt_marca_desactualizados():
     kpis = {"ipc": {"ultimo": 0.3}}
     p = construir_prompt(kpis, [], {"ipc": {"fresco": False}}, list(PERFILES)[0])
     assert '"desactualizado": true' in p
+
+
+def test_corta_valores_futuros(monkeypatch):
+    hoy = pd.Timestamp(dt.date.today())
+    s = pd.Series([1.0, 2.0], index=[hoy, hoy + pd.Timedelta(days=20)])
+    monkeypatch.setattr(datos, "descargar_mindicador", lambda c, a: s)
+    series, _ = datos.cargar_indicadores(1, usar_snapshot=False)
+    assert series["uf"].index.max() == hoy

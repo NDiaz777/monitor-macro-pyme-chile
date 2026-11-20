@@ -38,11 +38,11 @@ flowchart LR
 ## Métricas
 | Métrica | Resultado | Cómo se mide |
 |---|---|---|
-| Cifras verificadas en la respuesta IA | _pendiente_ | `scripts/evaluar_ia.py` (4 perfiles × N corridas) |
-| Latencia de la IA (sin caché) | _pendiente_ | mismo script |
+| Cifras verificadas en la respuesta IA | **100 %** (8 corridas, 4 perfiles) | `scripts/evaluar_ia.py` (4 perfiles × N corridas) |
+| Latencia de la IA (sin caché) | **~14 s** mediana (2–31 s) | mismo script |
 | Latencia de la IA (con caché) | _pendiente_ | se muestra en la app, origen "Caché" |
-| Tokens por análisis (entrada/salida) | _pendiente_ | `usage_metadata` de Gemini |
-| Formato correcto (4/4 secciones) | _pendiente_ | mismo script |
+| Tokens por análisis (entrada/salida) | **~1.670 / ~405** | `usage_metadata` de Gemini |
+| Formato correcto (4/4 secciones) | **8/8** | mismo script |
 | Tests automáticos | 9/9 pasan | `pytest` |
 
 ## Decisiones y trade-offs
@@ -88,7 +88,7 @@ pytest -q
 
 **Design decisions:** *rules decide, AI explains* (deterministic and auditable); KPIs instead of raw series (~1k vs ~30k tokens); free Gemini tier with caching and a per-session limit to protect the quota; a regex-based number check instead of LLM-as-judge (free, instant and explainable, but it only catches invented numbers, not flawed reasoning).
 
-**Metrics:** see the table above (filled in with `scripts/evaluar_ia.py`).
+**Metrics** (8 runs, 4 profiles, `gemini-3.5-flash`): 100% of figures verified, median latency ~14 s (uncached), ~1,670 input / ~405 output tokens, 8/8 correct 4-section format. Cached latency: measured in the live app.
 
 **What I learned:** data quality beats model choice; separating deterministic logic from generative output builds trust; how to evaluate an LLM feature (latency, tokens, factual-number accuracy, format compliance).
 
